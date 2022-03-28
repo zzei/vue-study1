@@ -5,7 +5,9 @@
     </el-aside>
     <el-container>
       <el-header>Header</el-header>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view/>
+      </el-main>
       <el-footer>Footer</el-footer>
     </el-container>
   </el-container>
@@ -15,7 +17,7 @@
 import MenuCommon from '../src/components/MenuCommon.vue';
 
 export default {
-  name: "Home",
+  name: "Main",
   components: {
     MenuCommon
   },
@@ -29,6 +31,7 @@ export default {
 .el-header,
 .el-footer {
   background-color: #333;
+  color: #ffff;
 }
 .el-main {
   padding-top: 0;

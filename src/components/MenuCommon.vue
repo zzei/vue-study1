@@ -6,9 +6,10 @@
     @open="handleOpen"
     @close="handleClose"
     :collapse="isCollapse"
+    @select="clickMenu"
   >
     <!-- 系统标题 -->
-    <h3 style="margin-left:30px">zei-flow</h3>
+    <h3>zei-flow</h3>
     <!-- 遍历无子节点菜单数据 -->
     <el-menu-item
       v-for="item in noChildren"
@@ -19,7 +20,11 @@
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
     <!-- 遍历有子节点菜单数据 -->
-    <el-submenu v-for="item in hasChildren" :index="item.path" :key="item.path">
+    <el-submenu
+      v-for="item in hasChildren"
+      :index="item.path"
+      :key="item.path"
+    >
       <template slot="title">
         <i :class="'el-icon-' + item.icon"></i>
         <span slot="title">{{ item.label }}</span>
@@ -39,10 +44,19 @@
 </template>
 
 
-<style>
+<style lang="less" scoped>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+}
+.el-menu {
+  height: 100%;
+  border: none;
+  h3 {
+    color: #303133;
+    text-align: center;
+    line-height: 48px;
+  }
 }
 </style>
 
@@ -69,8 +83,8 @@ export default {
           url: "",
           children: [
             {
-              path: "/meun",
-              name: "meun",
+              path: "/menu",
+              name: "menu",
               label: "菜单管理",
               icon: "menu",
               url: "",
@@ -100,6 +114,12 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    clickMenu(e) {
+      console.log(e);
+      this.$router.push({
+        path: e,
+      });
     },
   },
   computed: {
